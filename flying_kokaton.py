@@ -22,6 +22,7 @@ def main():
     tmr = 0
     kk_move_y = 0
     kk_move_x = 0
+    kk_scroll = 0
 
     #ゲームのループ
     while True:
@@ -50,7 +51,7 @@ def main():
             kk_move_x = +2
             # kk_rect.move_ip((+2,0))
         else:
-            kk_rect.move_ip((-1,0)) #何も押されていない場合の処理
+            kk_move_x = -1 #何も押されていない場合の処理
         
         kk_rect.move_ip((kk_move_x, kk_move_y))
 
@@ -61,7 +62,6 @@ def main():
         kk_move_y = 0
         tmr += 1 
         clock.tick(200)
-
 
 if __name__ == "__main__":
     pg.init()
