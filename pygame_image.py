@@ -10,10 +10,14 @@ def main():
     pg.display.set_caption("はばたけ！こうかとん")
     screen = pg.display.set_mode((800, 600))
     clock  = pg.time.Clock()
+    #背景
     bg_img = pg.image.load("fig/pg_bg.jpg") #loadで背景画像を読み込む
     bg_img_han = pg.transform.flip(bg_img,True,False)
+    #こうかとん
     kk_img = pg.image.load("fig/3.png") #こうとん画像を読み込む
     kk_img = pg.transform.flip(kk_img, True, False)
+    kk_rect = kk_img.get_rect() # こうかとんrectを取得
+    kk_rect.center = 300, 200 # 座標設定
 
     tmr = 0
 
@@ -28,9 +32,20 @@ def main():
         screen.blit(bg_img, [-x+3200, 0]) 
         screen.blit(bg_img_han, [-x+(1600*3), 0])
         # screen.blit(kk_img,[300, 200])これだと固定されてしまうので・・・
-        kk_rect = kk_img.get_rect() # こうかとんrectを取得
-        kk_rect.center = 300, 200 # 座標設定
+
+        #キーボード操作
+        key_lst = pg.key.get_pressed() # キーが押されているか？
+        if key_lst[pg.K_UP]:
+            kk_rect.move_ip((0,-1))
+        elif key_lst[pg.K_DOWN]:
+            kk_rect.move_ip((0,+1))
+        elif key_lst[pg.K_LEFT]:
+            kk_rect.move_ip((-1,0))
+        elif key_lst[pg.K_RIGHT]:
+            kk_rect.move_ip((+1,0))
+
         screen.blit(kk_img, kk_rect) # こうかとんの描画
+
 
         pg.display.update()
         tmr += 1 
