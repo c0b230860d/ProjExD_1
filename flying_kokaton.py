@@ -20,9 +20,7 @@ def main():
     kk_rect.center = 300, 200 # 座標設定
 
     tmr = 0
-    kk_move_y = 0
-    kk_move_x = 0
-    kk_scroll = 0
+
 
     #ゲームのループ
     while True:
@@ -37,29 +35,30 @@ def main():
         # screen.blit(kk_img,[300, 200])これだと固定されてしまうので・・・
 
         #キーボード操作
+        kk_move_x = 0
+        kk_move_y = 0
         key_lst = pg.key.get_pressed() # キーが押されているか？
         if key_lst[pg.K_UP]:
-            kk_move_y = -1
+            kk_move_y -= 1
             # kk_rect.move_ip((0,-1))
         if key_lst[pg.K_DOWN]:
-            kk_move_y = +1
+            kk_move_y += 1
             # kk_rect.move_ip((0,+1))
         if key_lst[pg.K_LEFT]:
-            kk_move_x = -1
+            kk_move_x -= 1
             # kk_rect.move_ip((-1,0))
         if key_lst[pg.K_RIGHT]:
-            kk_move_x = +2
+            kk_move_x += 2
             # kk_rect.move_ip((+2,0))
-        else:
-            kk_move_x = -1 #何も押されていない場合の処理
         
+        kk_move_x -= 1 #何も押されていない場合の処理
+        print(kk_move_x, kk_move_y)
         kk_rect.move_ip((kk_move_x, kk_move_y))
 
         screen.blit(kk_img, kk_rect) # こうかとんの描画
 
         pg.display.update()
-        kk_move_x = 0
-        kk_move_y = 0
+        
         tmr += 1 
         clock.tick(200)
 
