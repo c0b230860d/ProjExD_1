@@ -21,14 +21,15 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        screen.blit(bg_img, [0, 0]) #(0,0)左上に背景を張り付け
+        x = tmr % 800
+        screen.blit(bg_img, [-x, 0]) #(0,0)左上に背景を張り付け
         # screen.blit(kk_img,[300, 200])これだと固定されてしまうので・・・
         kk_rect = kk_img.get_rect() # こうかとんrectを取得
         kk_rect.center = 300, 200 # 座標設定
         screen.blit(kk_img, kk_rect) # こうかとんの描画
 
         pg.display.update()
-        tmr += 1        
+        tmr += 1 
         clock.tick(200)
 
 
