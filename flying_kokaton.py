@@ -51,7 +51,6 @@ def main():
             # kk_rect.move_ip((+2,0))
         else:
             kk_rect.move_ip((-1,0)) #何も押されていない場合の処理
-        
         kk_rect.move_ip((kk_move_x, kk_move_y))
 
         screen.blit(kk_img, kk_rect) # こうかとんの描画
